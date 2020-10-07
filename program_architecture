@@ -1,0 +1,55 @@
+# cells
+calculate_new_cell_position(cell) -> void
+    if
+        handle_collision_cell_border()
+    else
+        change_cell_direction()
+
+x initialize_cell() -> cell
+x initialize_cells() -> cell[]
+x calculate_velocity(cell)
+x calculate_radius(cell)
+
+enum color_t {}
+struct cell_t {
+    color_t color,
+    bool alive,
+    vector_t direction,
+    int x,
+    int y,
+    double mass,
+}
+
+# agario
+move_cells()
+detect_collisions(cell[], queue food_collisions, queue cell_collisions) -> void
+x detect_collision(cell1, cell2)
+detect_collision(cell, food)
+
+
+handle_collisions()
+    handle_collision_cell_cell()
+    handle_collision_cell_food()
+
+#view 
+display_new_game_grid()
+gfx_drawcircle()
+
+#food
+initialize_food() -> food
+generate_foods(foods) -> void
+initialize_foods() -> food[]
+
+struct food_t {
+    int x,
+    int y
+}
+
+#main
+calculate_cells_number_by_worker() -> int
+initialize_domain() -> domain_t
+
+struc domain_t {
+    int height,
+    int width
+}

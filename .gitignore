@@ -1,0 +1,10 @@
+**/*.pdf
+**/*.o
+**/.vscode
+**/agario
+**/test_cell
+**/test_food
+**/test_agario
+**/test_food_queue
+**/test_cell_queue
+**/test_collision
