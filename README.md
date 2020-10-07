@@ -52,5 +52,5 @@ make
 
 ## Diagramme d'activité
 
-![](/home/justin/Documents/github/agario/diagramme.png)
+![](/home/justin/Documents/github/AgarioTest/diagramme.png)
 
