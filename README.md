@@ -16,7 +16,7 @@ This work consists of a simplified simulator of the original Agario game. The ce
 - In this area, food particles are present which are characterized only by their position (size = 1). If a cell encounters a food particle, the cell gains mass and the particle disappears from the domain. The initial amount of food is defined at the beginning of the program.When a particle is eaten (with a given probability), the food "reappears" at random points in the domain that do not already contain a particle.
 - Each cell is defined by a state ("dead" or "alive"), a color (fixed throughout the life of the cell), a direction of movement, a position on the playing field and a mass (initially between 5 and 8). From this mass, are deduced the radius of the disk representing it graphically and its speed of movement. It moves randomly in a given direction, according to the eight main cardinal points, and changes direction after a certain time, also randomly. If its center collides with the edges of the playing area, it must bounce. If it eats a particle of food, it gains one unit of mass, but loses speed. It can only increase by one unit at a time, i.e. it can only eat one food particle at a time. If it eats another cell, it recovers its mass. If it is eaten by another cell, its state passes to "death" and after a certain time, it reappears on the domain, in a similar way to the initial conditions. The height of the domain will also represent the maximum mass of a cell.
 
-## Technology
+## Technologies
 
 The project is entirely developed in c.
 
