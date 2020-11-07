@@ -4,7 +4,7 @@
 
 **Date:** 05.2019
 
-## The projet
+## The project
 
 This work consists of a simplified simulator of the original Agario game. The cells are controlled by computer and the display, keyboard management and game logic are managed concurrently.
 
