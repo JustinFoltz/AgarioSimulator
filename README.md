@@ -1,24 +1,30 @@
 # Agario
 
-**Résalisé par**: Lucas Pallud, Justin Foltz
+**Directed by**: Justin Foltz, Lucas Pallud
 
-**Date:** 05-2019
+**Date:** 05.2019
 
 ## Le projet
 
-Ce travaile consiste en un simulateur simplifié du jeu original Agario. Les cellules sont contrôlées par ordinateur et l’affichage, la gestion du clavier et la logique du jeu sont gérées de manière concurrente.
+This work consists of a simplified simulator of the original Agario game. The cells are controlled by computer and the display, keyboard management and game logic are managed concurrently.
 
-### Règles du simulateur
+![](./img/simulator.jpg)
 
-- Le domaine de jeu est rectangulaire et défini par une largeur et une hauteur fixes.
-- Sur ce domaine, sont présentes des particules de nourriture qui sont caractérisées uniquement par leur position (taille = 1). Si une cellule rencontre une particule de nourriture, la cellule gagne en masse et la particule disparait du domaine. La quantité de nourriture initiale est définie au début du programme. Lorsqu’une particule est mangée et selon une probabilité donnée, la nourriture “réapparaît” sur des points aléatoires du domaine qui ne contiennent pas déjà une particule.
-- Chaque cellule est définie par un état (“morte” ou “vivante”), une couleur (fixe tout au long de la vie de la cellule), une direction de déplacement, une position sur le domaine de jeu et une masse (initialement comprise entre 5 et 8). De cette masse, sont déduits le rayon du disque la représentant graphiquement et sa vitesse de déplacement. Elle se déplace de manière aléatoire dans une direction donnée, selon les huit points cardinaux principaux, et change de direction après un certain temps, de manière aléatoire également. Si son centre entre en collision avec les bords du domaine de jeu, elle doit rebondir (voir explications plus bas). Si elle mange une particule de nourriture, elle gagne une unité de masse, mais perds en vitesse. Elle ne peut augmenter que d’une unité à la fois, c’est à dire manger une seule particule de nourriture à chaque déplacement. Si elle mange une autre cellule, elle récupère la masse de cette dernière. Si elle est mangée par une autre cellule, son état passe à “mort” et au bout d’un certain temps, elle réapparaît sur le domaine, de manière analogue aux conditions initiales. La hauteur du domaine de jeu représentera également la masse maximale d’une cellule.
+### Rules of simulator
 
-## Lancement du projet
+- The domain is rectangular and defined by a fixed width and height.
+- In this area, food particles are present which are characterized only by their position (size = 1). If a cell encounters a food particle, the cell gains mass and the particle disappears from the domain. The initial amount of food is defined at the beginning of the program.When a particle is eaten (with a given probability), the food "reappears" at random points in the domain that do not already contain a particle.
+- Each cell is defined by a state ("dead" or "alive"), a color (fixed throughout the life of the cell), a direction of movement, a position on the playing field and a mass (initially between 5 and 8). From this mass, are deduced the radius of the disk representing it graphically and its speed of movement. It moves randomly in a given direction, according to the eight main cardinal points, and changes direction after a certain time, also randomly. If its center collides with the edges of the playing area, it must bounce. If it eats a particle of food, it gains one unit of mass, but loses speed. It can only increase by one unit at a time, i.e. it can only eat one food particle at a time. If it eats another cell, it recovers its mass. If it is eaten by another cell, its state passes to "death" and after a certain time, it reappears on the domain, in a similar way to the initial conditions. The height of the domain will also represent the maximum mass of a cell.
 
-### Prerequis :
+### Technology
 
-Le paquet **[libsdl2-dev](apt://libsdl2-dev)** doit être présent
+The project is entirely developed in c.
+
+## Running the projet
+
+### Prerequisites
+
+Package **[libsdl2-dev](apt://libsdl2-dev)** must be installed.
 
 ### Compilation :
 
@@ -26,31 +32,29 @@ Le paquet **[libsdl2-dev](apt://libsdl2-dev)** doit être présent
 make
 ```
 
-### Lancement :
+### Running the simulation
 
 ```bash
 ./agario <width> <height> <seed> <food> <dir> <res> <nf> <freq> <workers> <cells>
 ```
 
-- La taille du domaine à créer est donnée par les arguments **width** et **height** spécifiés sur la ligne de commande, entiers plus grands ou égaux à 100.
-- L’état initial du domaine (absence/présence de particules de nourriture) est calculé aléatoirement selon les deux arguments **seed** et **food** spécifiés sur la ligne de commande :
-  - **seed** (entier) est la graine à utiliser par le générateur de nombres aléatoires.
-  - **food** (valeur décimale dans le range [0..1[) représente la proportion de cases du domaine occupées par des particules de nourriture. Par exemple, 0.1 représente une surface occupée de 10% par de la nourriture.
-  - Les arguments **dir**, **res** et **nf** (valeurs décimales dans le range [0..1[) représentent les probabilités de :
-    - **dir** : changement de direction d’une cellule (vivante).
-    - **res** : pour une cellule morte, réapparaître (testé à chaque frame).
-    - **nf** (pour “new food”): faire apparaître une nouvelle particule de nourriture sur une position qui ne comprend pas déjà de nourriture.
-  - **freq** est un entier (> 0), représentant la fréquence d’affichage en Hz.
-  - **workers** est un entier (>= 1) donnant le nombre de threads travailleurs.
-  - **cells** est un entier (>= 1 et >= workers) représentant le nombre de cellules.
+- The size of the domain to be created is given by the arguments **width** and **height** specified on the command line, integers greater than or equal to 100.
+- The initial state of the domain (absence/presence of food particles) is calculated randomly according to the two arguments **seed** and **food** specified on the command line :
+  - **seed** (integer) is the seed to be used by the random number generator.
+  - **food** (decimal value in the range [0..1[) represents the proportion of cells in the domain occupied by food particles. For example, 0.1 represents an area of 10% occupied by food.
+  - The arguments **dir**, **res** and **nf** (decimal values in range [0..1[) represent the probabilities of :
+    - **dir** : change of direction of a (living) cell.
+    - **res** : for a dead cell, reappear (tested at each frame).
+    - **nf** (for "new food"): to make a new food particle appear on a position that does not already contain food.
+  - **freq** is an integer (> 0), representing the display frequency in Hz.
+  - **workers** is an integer (>= 1) giving the number of threads working.
 
- Exemple :
+ Exemple
 
 ```bash
 ./agario 960 600 0 0.001 0.01 0.05 0.1 30 4 10
 ```
 
-## Diagramme d'activité
+### Stopping the simulation
 
-![](./diagramme.png)
-
+Simulation can be stopped by pressing `esc` key.
