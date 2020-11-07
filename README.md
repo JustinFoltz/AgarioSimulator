@@ -26,34 +26,40 @@ The project is entirely developed in c.
 
 Package **[libsdl2-dev](apt://libsdl2-dev)** must be installed.
 
-### Compiling the project :
+### Running the project
 
-```makefile
-make
-```
+1. Clone the repository
 
-### Running the simulation
+2. Compile the project :
 
-```bash
-./agario <width> <height> <seed> <food> <dir> <res> <nf> <freq> <workers> <cells>
-```
+   ```bash
+   make
+   ```
 
-- The size of the domain to be created is given by the arguments **width** and **height** specified on the command line, integers greater than or equal to 100.
-- The initial state of the domain (absence/presence of food particles) is calculated randomly according to the two arguments **seed** and **food** specified on the command line :
-  - **seed** (integer) is the seed to be used by the random number generator.
-  - **food** (decimal value in the range [0..1[) represents the proportion of cells in the domain occupied by food particles. For example, 0.1 represents an area of 10% occupied by food.
-  - The arguments **dir**, **res** and **nf** (decimal values in range [0..1[) represent the probabilities of :
-    - **dir** : change of direction of a (living) cell.
-    - **res** : for a dead cell, reappear (tested at each frame).
-    - **nf** (for "new food"): to make a new food particle appear on a position that does not already contain food.
-  - **freq** is an integer (> 0), representing the display frequency in Hz.
-  - **workers** is an integer (>= 1) giving the number of threads working.
+3. Run the simulation: 
 
- Example :
+   ```bash
+   ./agario <width> <height> <seed> <food> <dir> <res> <nf> <freq> <workers> <cells>
+   ```
 
-```bash
-./agario 960 600 0 0.001 0.01 0.05 0.1 30 4 10
-```
+   - The size of the domain to be created is given by the arguments **width** and **height** specified on the command line, integers greater than or equal to 100.
+
+   - The initial state of the domain (absence/presence of food particles) is calculated randomly according to the two arguments **seed** and **food** specified on the command line :
+
+     - **seed** (integer) is the seed to be used by the random number generator.
+     - **food** (decimal value in the range [0..1[) represents the proportion of cells in the domain occupied by food particles. For example, 0.1 represents an area of 10% occupied by food.
+     - The arguments **dir**, **res** and **nf** (decimal values in range [0..1[) represent the probabilities of :
+       - **dir** : change of direction of a (living) cell.
+       - **res** : for a dead cell, reappear (tested at each frame).
+       - **nf** (for "new food"): to make a new food particle appear on a position that does not already contain food.
+     - **freq** is an integer (> 0), representing the display frequency in Hz.
+     - **workers** is an integer (>= 1) giving the number of threads working.
+
+   - Example :
+
+     ```bash
+     ./agario 960 600 0 0.001 0.01 0.05 0.1 30 4 10
+     ```
 
 ### Stopping the simulation
 
